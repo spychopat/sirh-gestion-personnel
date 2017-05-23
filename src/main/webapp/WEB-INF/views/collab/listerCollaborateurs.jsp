@@ -7,23 +7,15 @@
 
 <html>
 
-<head>
-
-<meta charset="UTF-8">
-
-<title>SGP - App</title>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap-3.3.7-dist/css/bootstrap.css">
-</head>
+<%@ include file="./entete.jsp" %>
 
 <body>
-
+	
+	
+	
 	<h1>Les collaborateurs</h1>
-	<a href="./creer" class="btn btn-primary">Nouveau Collaborateur</a>
 
 	<!-- Liste des noms -->
-
-
 
 	<div class="table-responsive">
 		<table class="table">
