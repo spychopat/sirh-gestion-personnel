@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-
+<%@page import="dev.sgp.entite.Collaborateur"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 
 <title>SGP - App</title>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap-3.3.7-dist/css/bootstrap.css">
 </head>
 
 <body>
@@ -20,17 +20,26 @@
 
 <!-- Liste des noms -->
 
-<ul>
+
 
 <%
 
-List<String> listeNoms = (List<String>)request.getAttribute("listeNoms");
+List<Collaborateur> listeCollab = (List<Collaborateur>)request.getAttribute("collaborateurs");
 
-for (String nom : listeNoms) {
+for (Collaborateur collab : listeCollab) {
 
 %>
 
-<li><%= nom %></li>
+<table style="border:solid">
+<tr><td>Nom</td><td><%= collab.getNom() %></td></tr>
+<tr><td>Prénom</td><td><%= collab.getPrenom() %></td></tr>
+<tr><td>Date de naissance</td><td><%= collab.getDateDeNaissance() %></td></tr>
+<tr><td>Adresse</td><td><%= collab.getAdresse() %></td></tr>
+<tr><td>Numéro de sécu</td><td><%= collab.getNuméroDeSecuSociale() %></td></tr>
+
+</table>
+
+
 
 <%
 
@@ -38,7 +47,7 @@ for (String nom : listeNoms) {
 
 %>
 
-</ul>
+
 
 </body>
 
