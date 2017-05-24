@@ -95,6 +95,66 @@ public class Collaborateur {
 	public Departement getDepartement() {
 		return departement;
 	}
+
+
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+
+	public void setDateDeNaissance(String dateDeNaissance) {
+		DateDeNaissance = dateDeNaissance;
+	}
+
+
+	public void setAdresse(String adresse) {
+		Adresse = adresse;
+	}
+
+
+	public void setNuméroDeSecuSociale(String numéroDeSecuSociale) {
+		NuméroDeSecuSociale = numéroDeSecuSociale;
+	}
+
+
+	public void setEmailPro(String emailPro) {
+		this.emailPro = emailPro;
+	}
+
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+
+	public void setDateHeureCreation(ZonedDateTime dateHeureCreation) {
+		this.dateHeureCreation = dateHeureCreation;
+	}
+
+
+	public void setActif(Boolean actif) {
+		this.actif = actif;
+	}
+
+
+	public void setIntitulePoste(String intitulePoste) {
+		this.intitulePoste = intitulePoste;
+	}
+
+
+	public void setDepartement(Departement departement) {
+		this.departement = departement;
+	}
 	
 	
 	

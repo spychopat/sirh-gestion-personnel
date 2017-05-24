@@ -35,6 +35,7 @@
 					<td>${collab.adresse}</td>
 					<td>${collab.numéroDeSecuSociale}</td>
 					<td>${collab.emailPro}</td>
+					<td><a href="./editer?matricule=${collab.matricule}" class="btn btn-primary">Editer</a></td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -35,4 +35,25 @@ public class CollaborateurService {
 
 	}
 
+	public void editerCollaborateur(String matriculeParam, String nomParam, String prenomParam,
+			String dateNaissanceParam, String adresseParam, String numsecuParam) {
+		
+		
+		Collaborateur colabAEditer = null;
+		for (Collaborateur colab : listeCollaborateurs){
+			if(colab.getMatricule().equals(matriculeParam))
+				colabAEditer = colab;
+		}
+		
+		if(colabAEditer==null) return;
+		
+		colabAEditer.setNom(nomParam);
+		colabAEditer.setPrenom(prenomParam);
+		colabAEditer.setDateDeNaissance(dateNaissanceParam);
+		colabAEditer.setAdresse(adresseParam);
+		colabAEditer.setNuméroDeSecuSociale(numsecuParam);
+		colabAEditer.setEmailPro(prenomParam+"."+nomParam+"@masociete.dta"); // Oui, c'est sale
+		
+	}
+
 }
