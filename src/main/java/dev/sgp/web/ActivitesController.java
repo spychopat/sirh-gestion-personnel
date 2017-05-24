@@ -12,45 +12,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dev.sgp.entite.CollabEvt;
 import dev.sgp.entite.Collaborateur;
 import dev.sgp.entite.VisiteWeb;
+import dev.sgp.service.ActiviteService;
 import dev.sgp.service.CollaborateurService;
 import dev.sgp.service.DepartementService;
 import dev.sgp.service.VisiteWebService;
 import dev.sgp.util.StatsPage;
 
-public class StatistiquesController extends HttpServlet {
+public class ActivitesController extends HttpServlet {
 
 	
 	//@Inject private CollaborateurService collabService;
 	//@Inject private DepartementService departementService;
-	@Inject private VisiteWebService visiteService;
+	@Inject private ActiviteService activitesService;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		
 		// List<VisiteWeb> listeVisites = Constantes.VISITE_SERVICE.listerVisitesWeb();
-		List<VisiteWeb> listeVisites = visiteService.listerVisitesWeb();
+		List<CollabEvt> listeAct = activitesService.listerActivitesCollab();
 		
-		List<StatsPage> stats = new ArrayList<StatsPage>();
-		
-		for (VisiteWeb visiteWeb : listeVisites) {
-			boolean trouve = false;
-			for (StatsPage stat : stats) {
-				if(stat.chemin.equals(visiteWeb.getChemin())){
-					stat.addVisite(visiteWeb);
-					trouve = true;
-				}
-			}
-			if(!trouve) {
-				stats.add(new StatsPage(visiteWeb));
-			}
-		}
-		req.setAttribute("stats", stats);
+		req.setAttribute("activites", listeAct);
 		
 		
-		req.getRequestDispatcher("/WEB-INF/views/collab/statistiques.jsp")
+		req.getRequestDispatcher("/WEB-INF/views/collab/activites.jsp")
 		.forward(req, resp);
 
 	}

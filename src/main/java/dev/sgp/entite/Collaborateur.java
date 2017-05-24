@@ -2,6 +2,7 @@ package dev.sgp.entite;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 
@@ -29,6 +30,8 @@ public class Collaborateur {
 		DateDeNaissance = dateDeNaissance;
 		Adresse = adresse;
 		NuméroDeSecuSociale = numéroDeSecuSociale;
+		
+		this.matricule = UUID.randomUUID().toString();
 		
 		this.emailPro = prenom+"."+nom+"@masociete.dta";
 	}

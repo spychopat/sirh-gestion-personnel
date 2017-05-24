@@ -1,18 +1,22 @@
 package dev.sgp.web;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Arrays;
-
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dev.sgp.entite.Collaborateur;
-import dev.sgp.util.Constantes;
+import dev.sgp.service.CollaborateurService;
 
 public class CreerCollaborateurController extends HttpServlet {
+	
+	
+	@Inject private CollaborateurService collabService;
+	
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws
 
@@ -36,7 +40,7 @@ public class CreerCollaborateurController extends HttpServlet {
 		String numsecuParam = req.getParameter("numsecu");
 
 		Collaborateur newCollab = new Collaborateur(nomParam,prenomParam,dateNaissanceParam,adresseParam,numsecuParam);
-		Constantes.COLLAB_SERVICE.sauvegarderCollaborateur(newCollab);
+		collabService.sauvegarderCollaborateur(newCollab);
 		
 		
 		resp.sendRedirect(req.getContextPath() + "/collaborateurs/lister");

@@ -18,3 +18,4 @@
 	<a href="./lister" class="btn btn-primary">Liste Collaborateur</a>
 	<a href="./creer" class="btn btn-primary">Nouveau Collaborateur</a>
 	<a href="./statistiques" class="btn btn-primary">Statistiques</a>
+	<a href="./activites" class="btn btn-primary">Activités</a>
