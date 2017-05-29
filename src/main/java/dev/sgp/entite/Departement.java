@@ -4,11 +4,19 @@ import javax.persistence.Entity;
 
 @Entity
 public class Departement {
+
+	@javax.persistence.Id
 	Integer id;
 	String nom;
 	
-
-	@javax.persistence.Id
+	
+	public Departement() {
+	}
+	public Departement(Integer id,String nom) {
+		this.id = id;
+		this.nom = nom;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

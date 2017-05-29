@@ -5,13 +5,16 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Collaborateur {
 	
-	
-	String matricule;
+	@javax.persistence.Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	Integer matricule;
 	String nom;
 	String prenom;
 	String DateDeNaissance;
@@ -19,10 +22,11 @@ public class Collaborateur {
 	String NuméroDeSecuSociale;
 	String emailPro;
 	String photo;
-	ZonedDateTime dateHeureCreation;
+	String dateHeureCreation;
 	Boolean actif;
 	String intitulePoste;
 	
+	@ManyToOne
 	Departement departement;
 	
 	
@@ -37,17 +41,17 @@ public class Collaborateur {
 		Adresse = adresse;
 		NuméroDeSecuSociale = numéroDeSecuSociale;
 		
-		this.matricule = UUID.randomUUID().toString();
-		
+		//this.matricule = UUID.randomUUID().toString();
 		this.emailPro = prenom+"."+nom+"@masociete.dta";
+		this.dateHeureCreation = ZonedDateTime.now().toString();
+		
 	}
 
 	public String getNom() {
 		return this.nom;
 	}
 
-	@javax.persistence.Id
-	public String getMatricule() {
+	public Integer getMatricule() {
 		return matricule;
 	}
 
@@ -75,7 +79,7 @@ public class Collaborateur {
 		return photo;
 	}
 
-	public ZonedDateTime getDateHeureCreation() {
+	public String getDateHeureCreation() {
 		return dateHeureCreation;
 	}
 
@@ -93,7 +97,7 @@ public class Collaborateur {
 	}
 
 
-	public void setMatricule(String matricule) {
+	public void setMatricule(Integer matricule) {
 		this.matricule = matricule;
 	}
 
@@ -133,7 +137,7 @@ public class Collaborateur {
 	}
 
 
-	public void setDateHeureCreation(ZonedDateTime dateHeureCreation) {
+	public void setDateHeureCreation(String dateHeureCreation) {
 		this.dateHeureCreation = dateHeureCreation;
 	}
 

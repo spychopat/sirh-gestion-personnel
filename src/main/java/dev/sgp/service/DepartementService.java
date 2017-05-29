@@ -3,6 +3,7 @@ package dev.sgp.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import dev.sgp.entite.Collaborateur;
 import dev.sgp.entite.Departement;
 
+@Stateless
 public class DepartementService {
 
 	//List<Departement> listeDepartements = new ArrayList<>();
@@ -22,7 +24,6 @@ public class DepartementService {
 	}
 
 	public void sauvegarderDepartement(Departement depar) {
-
 		//listeDepartements.add(depar);
 		em.persist(depar);
 	}

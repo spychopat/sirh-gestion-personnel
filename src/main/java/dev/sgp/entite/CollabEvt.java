@@ -15,7 +15,7 @@ public class CollabEvt {
 	
 	private ZonedDateTime dateHeure;
 	private TypeCollabEvt type;
-	private String matricule;
+	private Integer matricule;
 	
 
 	public CollabEvt(){
@@ -23,7 +23,7 @@ public class CollabEvt {
 	}
 
 
-	public CollabEvt(TypeCollabEvt type, String matricule) {
+	public CollabEvt(TypeCollabEvt type, Integer matricule) {
 		super();
 		this.dateHeure = ZonedDateTime.now();
 		this.type = type;
@@ -55,7 +55,7 @@ public class CollabEvt {
 	}
 
 
-	public void setMatricule(String matricule) {
+	public void setMatricule(Integer matricule) {
 		this.matricule = matricule;
 	}
 
@@ -69,7 +69,7 @@ public class CollabEvt {
 		return type;
 	}
 
-	public String getMatricule() {
+	public Integer getMatricule() {
 		return matricule;
 	}
 	

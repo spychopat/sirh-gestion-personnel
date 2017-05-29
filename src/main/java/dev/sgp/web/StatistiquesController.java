@@ -31,11 +31,11 @@ public class StatistiquesController extends HttpServlet {
 
 		
 		// List<VisiteWeb> listeVisites = Constantes.VISITE_SERVICE.listerVisitesWeb();
-		List<VisiteWeb> listeVisites = visiteService.listerVisitesWeb();
+		//List<VisiteWeb> listeVisites = visiteService.listerVisitesWeb();
 		
 		List<StatsPage> stats = new ArrayList<StatsPage>();
 		
-		for (VisiteWeb visiteWeb : listeVisites) {
+		for (VisiteWeb visiteWeb : visiteService.listerVisitesWeb()) {
 			boolean trouve = false;
 			for (StatsPage stat : stats) {
 				if(stat.chemin.equals(visiteWeb.getChemin())){

@@ -22,7 +22,7 @@ public class EditerCollaborateurController extends HttpServlet  {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String matriculeParam = req.getParameter("matricule");
+		Integer matriculeParam = Integer.parseInt(req.getParameter("matricule"));
 		List<Collaborateur> listeCollaborateurs = collabService.listerCollaborateurs();
 		
 		
@@ -30,7 +30,7 @@ public class EditerCollaborateurController extends HttpServlet  {
 		
 		
 		for (Collaborateur colab : listeCollaborateurs){
-			if(colab.getMatricule().equals(matriculeParam))
+			if(colab.getMatricule() == matriculeParam)
 				colabAEditer = colab;
 		}
 		
@@ -52,7 +52,8 @@ public class EditerCollaborateurController extends HttpServlet  {
 		String dateNaissanceParam = req.getParameter("dateNaissance");
 		String adresseParam = req.getParameter("adresse");
 		String numsecuParam = req.getParameter("numsecu");
-		String matriculeParam = req.getParameter("matricule");
+		Integer matriculeParam = Integer.parseInt(req.getParameter("matricule"));
+		
 
 		//Collaborateur newCollab = new Collaborateur(nomParam,prenomParam,dateNaissanceParam,adresseParam,numsecuParam);
 		//collabService.sauvegarderCollaborateur(newCollab);
