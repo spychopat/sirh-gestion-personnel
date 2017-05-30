@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Collaborateur {
@@ -25,6 +26,9 @@ public class Collaborateur {
 	String dateHeureCreation;
 	Boolean actif;
 	String intitulePoste;
+	
+	@OneToOne
+	CoordonneesBancaire rib;
 	
 	@ManyToOne
 	Departement departement;
@@ -45,6 +49,15 @@ public class Collaborateur {
 		this.emailPro = prenom+"."+nom+"@masociete.dta";
 		this.dateHeureCreation = ZonedDateTime.now().toString();
 		
+		
+	}
+
+	public CoordonneesBancaire getRib() {
+		return rib;
+	}
+
+	public void setRib(CoordonneesBancaire rib) {
+		this.rib = rib;
 	}
 
 	public String getNom() {

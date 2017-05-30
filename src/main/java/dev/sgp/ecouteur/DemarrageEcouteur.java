@@ -7,14 +7,17 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import dev.sgp.entite.Collaborateur;
+import dev.sgp.entite.CoordonneesBancaire;
 import dev.sgp.entite.Departement;
 import dev.sgp.service.CollaborateurService;
+import dev.sgp.service.CoordonneesBancairesService;
 import dev.sgp.service.DepartementService;
 @WebListener
 public class DemarrageEcouteur implements ServletContextListener {
     
     @Inject private CollaborateurService collabService;
     @Inject private DepartementService depService;
+    @Inject private CoordonneesBancairesService banqueService;
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         
@@ -33,10 +36,13 @@ public class DemarrageEcouteur implements ServletContextListener {
         
         Departement testDep = new Departement(1,"TestDep");
         depService.sauvegarderDepartement(testDep);
+        CoordonneesBancaire coordsBanque = new CoordonneesBancaire("banque","bic","ban");
+        banqueService.sauvegarderCoordonneesBancaire(coordsBanque);
         
 
     	collabService.editerCollaborateurDepartement(testDep, moi.getMatricule());
-        
+
+    	collabService.editerCollaborateurRib(coordsBanque, moi.getMatricule());
         /*
         Stream.of(
                 new Departement(1,"TestDep")

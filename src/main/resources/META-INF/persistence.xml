@@ -8,6 +8,7 @@
 		<class>dev.sgp.entite.Collaborateur</class>
 		<class>dev.sgp.entite.Departement</class>
 		<class>dev.sgp.entite.VisiteWeb</class>
+		<class>dev.sgp.entite.CoordonneesBancaire</class>
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action"
 				value="drop-and-create" />

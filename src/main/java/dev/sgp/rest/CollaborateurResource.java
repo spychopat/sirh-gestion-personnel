@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
 import dev.sgp.entite.Collaborateur;
+import dev.sgp.entite.CoordonneesBancaire;
 import dev.sgp.service.CollaborateurService;
 
 @Path("/collaborateurs")
@@ -49,7 +50,7 @@ public class CollaborateurResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collaborateur getCollabMatricule(@PathParam("matricule") String matricule) {
 		//System.out.println("MATRICULE : "+matricule);
-		return collabService.listerCollaborateursAvecMatricule(matricule);
+		return collabService.trouverCollaborateurParMatricule(matricule);
 	}
 
 	@PUT
@@ -62,5 +63,15 @@ public class CollaborateurResource {
 		return builder.build();
 	}
 
+	
+	@GET
+	@Path("/{matricule}/banque") 
+	@Produces(MediaType.APPLICATION_JSON)
+	public CoordonneesBancaire getCollabMatriculeBanque(@PathParam("matricule") String matricule) {
+		//System.out.println("MATRICULE : "+matricule);
+		
+		return collabService.trouverCollaborateurParMatricule(matricule).getRib();
+	}
+	
 }
 

@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 
 import dev.sgp.entite.CollabEvt;
 import dev.sgp.entite.Collaborateur;
+import dev.sgp.entite.CoordonneesBancaire;
 import dev.sgp.entite.Departement;
 import dev.sgp.entite.TypeCollabEvt;
 
@@ -25,7 +26,7 @@ public class CollaborateurService {
 
 
 
-	public Collaborateur listerCollaborateursAvecMatricule(String matricule) {
+	public Collaborateur trouverCollaborateurParMatricule(String matricule) {
 		return em.createQuery("select c from Collaborateur c where c.matricule = "+matricule, Collaborateur.class).getSingleResult();
 	}
 
@@ -106,6 +107,18 @@ public class CollaborateurService {
 		CollabEvt nouveauCollabEvt = new CollabEvt(TypeCollabEvt.MODIFICATION_COLLAB_DEPARTEMENT,matriculeParam);
 		collabEvt.fire(nouveauCollabEvt);
 
+
+	}
+
+	public void editerCollaborateurRib(CoordonneesBancaire rib, Integer matricule) {
+
+		Collaborateur colabAEditer = em.find(Collaborateur.class, matricule);
+		if(colabAEditer==null) return;
+		colabAEditer.setRib(rib);
+		em.merge(colabAEditer);
+
+		CollabEvt nouveauCollabEvt = new CollabEvt(TypeCollabEvt.MODIFICATION_COLLAB_RIB,matricule);
+		collabEvt.fire(nouveauCollabEvt);
 
 	}
 
