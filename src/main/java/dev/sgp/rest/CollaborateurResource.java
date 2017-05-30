@@ -18,11 +18,13 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import dev.sgp.entite.Collaborateur;
 import dev.sgp.entite.CoordonneesBancaire;
 import dev.sgp.service.CollaborateurService;
+import dev.sgp.service.CoordonneesBancairesService;
 
 @Path("/collaborateurs")
 public class CollaborateurResource {
 
 	@Inject private CollaborateurService collabService;
+	@Inject private CoordonneesBancairesService coordBancaireService;
 
 	/*
 	@GET
@@ -56,9 +58,10 @@ public class CollaborateurResource {
 	@PUT
 	@Path("/{matricule}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response  updateColla(Collaborateur collab) {      
-		collabService.editerCollaborateurLimite(collab.getMatricule(), collab.getDateDeNaissance(), collab.getAdresse());
-		ResponseBuilder builder = Response.ok("texte");
+	public Response  updateColla(@PathParam("matricule") String matricule,Collaborateur collab) { 
+		//System.out.println("\n\nMATRICULE : "+matricule);
+		collabService.editerCollaborateurLimite(Integer.parseInt(matricule), collab.getDateDeNaissance(), collab.getAdresse());
+		ResponseBuilder builder = Response.ok("Collaborateur modifié avec succès.");
 		builder.language("fr").header("Content-type", "text/html");
 		return builder.build();
 	}
@@ -69,8 +72,17 @@ public class CollaborateurResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public CoordonneesBancaire getCollabMatriculeBanque(@PathParam("matricule") String matricule) {
 		//System.out.println("MATRICULE : "+matricule);
-		
 		return collabService.trouverCollaborateurParMatricule(matricule).getRib();
+	}
+	
+	@PUT
+	@Path("/{matricule}/banque")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response  updateCollabMatriculeBanque(@PathParam("matricule") String matricule,CoordonneesBancaire banque) {
+		coordBancaireService.editerCoordonneesBancaire(banque);
+		ResponseBuilder builder = Response.ok("Coordonnees bancaire modifiées avec succès.");
+		builder.language("fr").header("Content-type", "text/html");
+		return builder.build();
 	}
 	
 }

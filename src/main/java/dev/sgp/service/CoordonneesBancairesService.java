@@ -26,4 +26,16 @@ public class CoordonneesBancairesService {
 		em.persist(coor);
 	}
 
+	public void editerCoordonneesBancaire(CoordonneesBancaire banque) {
+		CoordonneesBancaire banqueAEditer = em.find(CoordonneesBancaire.class, banque.getId());
+
+		if(banqueAEditer==null) return;
+
+		banqueAEditer.setBanque(banque.getBanque());
+		banqueAEditer.setBic(banque.getBic());
+		banqueAEditer.setIban(banque.getIban());
+		em.merge(banqueAEditer);
+		
+	}
+
 }
